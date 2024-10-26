@@ -65,9 +65,9 @@ class IndexPage extends StatelessWidget {
                       height: 200,
                     ),
                     const SizedBox(height: 16.0), // Espacio entre el QR y el nombre
-                    Text(
-                      user.name,
-                      style:const  TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                      Text(
+                      '${user.name ?? ''} ${user.lastname ?? ''}', 
+                      style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 8.0), // Espacio entre el nombre y el cargo

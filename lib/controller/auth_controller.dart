@@ -27,7 +27,7 @@ class AuthController extends GetxController {
   // Método para iniciar sesión con la API
    Future<String?> login(String id, String password) async {
     try {
-      isLoading.value = true; // Inicia el loading
+     isLoading.value = true;
       final response = await http.post(
         Uri.parse('$baseUrl/auth'),
         headers: {'Content-Type': 'application/json'},
@@ -40,26 +40,25 @@ class AuthController extends GetxController {
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
         String token = responseData['access_token'];
-        
         await _saveToken(token);
         final qr = await qrGet(token);
         final user = await fetchUserProfile(token);
-        Get.offAll(() => IndexPage(qr: qr, user: user,)); // Redirigir a la página de inicio con el usuario
+        Get.offAll(() => IndexPage(qr: qr, user: user,)); 
         return token; 
       } else {
         Get.snackbar("Error", "No se pudo iniciar sesión");
         return null;
       }
     } catch (e) {
+      print(e);
       Get.snackbar("Error", "Ocurrió un error al iniciar sesión");
       return null;
     } finally {
-      isLoading.value = false; // Termina el loading
+      isLoading.value = false; 
     }
   }
 
   Future<String?> qrGet(String token) async {
-      print(token);
       final response = await http.post(
         Uri.parse('$baseUrl/qr-code/generate/'+token),
         headers: {'Content-Type': 'application/json'},
@@ -91,14 +90,7 @@ class AuthController extends GetxController {
 
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
-            User userInfo = User.fromJson({
-            'id': responseData['id'],
-            'name': responseData['name'],
-            'email': responseData['email'],
-            'phone': responseData['phone'],
-            'isActive': responseData['isActive'],
-            'token': token, 
-          });
+            User userInfo = User.fromJson(responseData);
           return userInfo;
       } else {
         Get.snackbar("Error", "No se pudo obtener el perfil del usuario");
