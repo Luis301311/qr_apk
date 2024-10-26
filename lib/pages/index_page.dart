@@ -34,7 +34,8 @@ class IndexPage extends StatelessWidget {
           ],
         ),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
+        child: Padding(
         padding: const EdgeInsets.only(right: 25.0, left: 25.0), // Espacio alrededor del cuadro
         child: Center(
           child: Column(
@@ -84,20 +85,22 @@ class IndexPage extends StatelessWidget {
                     ),
                     
                     const SizedBox(height: 16.0), 
-                    Row(
-                      children: [
-                        PhotoButton(onPressed: () {
-                          // Acción para el botón de foto
-                        }),
-                        const SizedBox(width: 10.0,),
-                        BarcodeButton(onPressed: () {
-                          // Acción para el botón de código de barras
-                        }),
-                        const SizedBox(width: 10.0,),
-                        QRButton(onPressed: () {
-                          
-                        }),
-                      ],
+                    Center(
+                      child: Row(
+                        children: [
+                          PhotoButton(onPressed: () {
+                            // Acción para el botón de foto
+                          }),
+                          const SizedBox(width: 10.0,),
+                          BarcodeButton(onPressed: () {
+                            // Acción para el botón de código de barras
+                          }),
+                          const SizedBox(width: 10.0,),
+                          QRButton(onPressed: () {
+                            
+                          }),
+                        ],
+                      ),
                     )
                   ],
                 ),
@@ -106,7 +109,8 @@ class IndexPage extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ),
+      );
   }
 }
 
