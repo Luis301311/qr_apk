@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_apk/controller/auth_controller.dart';
 
-
 class LoginPage extends StatelessWidget {
   final AuthController _authController = Get.put(AuthController());
 
   final TextEditingController _idController =
-      TextEditingController(); //no se inicia sesion con usermane sino con email xd
+      TextEditingController(); // no se inicia sesion con username sino con email
   final TextEditingController _passwordController = TextEditingController();
 
   @override
@@ -27,12 +26,12 @@ class LoginPage extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                      color: Colors.green, // Color verde para el título
                     ),
                   ),
                 ),
                 const SizedBox(height: 40),
-                _buildTextField(context, 'Cedula', _idController),
+                _buildTextField(context, 'Cédula', _idController),
                 const SizedBox(height: 20),
                 _buildTextField(context, 'Contraseña', _passwordController,
                     obscureText: true),
@@ -54,26 +53,20 @@ class LoginPage extends StatelessWidget {
     return TextField(
       controller: controller,
       obscureText: obscureText,
-      style:const  TextStyle(color: Colors.black),
+      style: const TextStyle(color: Colors.black),
       decoration: InputDecoration(
         labelText: hintText,
-        labelStyle: TextStyle(
-          color: Colors.grey,
-          shadows: [
-            Shadow(
-              offset:const  Offset(1, 1),
-              blurRadius: 1.0,
-              color: Colors.black.withOpacity(0.3),
-            ),
-          ],
+        labelStyle: const TextStyle(
+          color: Colors.green, // Color verde para la etiqueta
         ),
         filled: true,
-        fillColor: Colors.white.withOpacity(0.9),
+        fillColor: Colors.white,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(30),
+          borderSide: const BorderSide(color: Colors.green, width: 2), // Borde verde
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide:const  BorderSide(color: Colors.white),
+          borderSide: const BorderSide(color: Colors.green, width: 2), // Borde verde al enfocar
           borderRadius: BorderRadius.circular(30),
         ),
       ),
@@ -90,7 +83,7 @@ class LoginPage extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
-            backgroundColor: Colors.grey[700],
+            backgroundColor: Colors.green, // Color verde para el botón
           ),
           onPressed: () {
             String username = _idController.text.trim();
@@ -98,18 +91,11 @@ class LoginPage extends StatelessWidget {
 
             _authController.login(username, password);
           },
-          child: Text(
+          child: const Text(
             'Iniciar Sesión',
             style: TextStyle(
               fontSize: 18,
-              color: Colors.white,
-              shadows: [
-                Shadow(
-                  offset:const  Offset(1, 1),
-                  blurRadius: 1.0,
-                  color: Colors.black.withOpacity(0.5),
-                ),
-              ],
+              color: Colors.white, // Texto blanco para el botón
             ),
           ),
         ),
