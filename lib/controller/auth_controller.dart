@@ -59,18 +59,16 @@ class AuthController extends GetxController {
   }
 
   Future<String?> qrGet(String token) async {
+      print(token);
       final response = await http.post(
-        Uri.parse('$baseUrl/qr-code/generate'),
+        Uri.parse('$baseUrl/qr-code/generate/'+token),
         headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({
-          'token': token,
-        }),
       );
 
       if (response.statusCode == 201) {
         final responseData = jsonDecode(response.body);
-        
         String qrImage = responseData['qrImage'];
+          
          _saveQr(qrImage);
          return qrImage;// Retorna el token para su uso posterior
       } else {
@@ -147,6 +145,7 @@ class AuthController extends GetxController {
     if (id != null && password != null) {
       await login(id, password);
     }
+    
   }
 
   // Limpiar credenciales guardadas

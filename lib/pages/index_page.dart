@@ -89,11 +89,11 @@ class IndexPage extends StatelessWidget {
                         PhotoButton(onPressed: () {
                           // Acción para el botón de foto
                         }),
-                        const SizedBox(width: 15.0,),
+                        const SizedBox(width: 10.0,),
                         BarcodeButton(onPressed: () {
                           // Acción para el botón de código de barras
                         }),
-                        const SizedBox(width: 15.0,),
+                        const SizedBox(width: 10.0,),
                         QRButton(onPressed: () {
                           
                         }),
